@@ -18,18 +18,23 @@ class Parameters extends React.Component {
 
   updateRows = (event) => {
     let newVal = parseInt(event.target.value, 10)
+
     this.setState({
       newRows: newVal
     })
   }
+
   updateColumns = (event) => {
     let newVal = parseInt(event.target.value, 10)
+
     this.setState({
       newColumns: newVal
     })
   }
+
   updateMines = (event) => {
     let newVal = parseInt(event.target.value, 10)
+
     this.setState({
       newMines: newVal
     })
@@ -45,18 +50,22 @@ class Parameters extends React.Component {
       <div className = "parameter" >
         <Form>
           <Form.Field>
-            <label >Number of Rows</label>
+            <label>Number of Rows</label>
+            <br/>
             <input placeholder={this.props.rows} onChange={this.updateRows}/>
           </Form.Field>
           <Form.Field>
             <label>Number of Columns</label>
+            <br/>
             <input placeholder={this.props.columns} onChange={this.updateColumns}/>
           </Form.Field>
           <Form.Field>
             <label>Number of Mines</label>
+            <br/>
             <input placeholder={this.props.minesNum} onChange={this.updateMines}/>
           </Form.Field>
         </Form>
+        <br/>
         <Button onClick={this.stopDefault} >Submit</Button>
       </div>
     )
