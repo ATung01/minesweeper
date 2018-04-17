@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Grid from './components/grid'
+import Parameters from './components/Parameters'
 
 class App extends Component {
 
@@ -9,7 +10,7 @@ class App extends Component {
   this.state = {
     rows: 10,
     columns: 10,
-    minesNum: 10
+    minesNum: 20
     }
   }
 
@@ -24,11 +25,9 @@ class App extends Component {
         minesPlaced += this.addMines(minesPlaced, square, numSquares, this.state.minesNum)
         rowArr.push(square)
         numSquares--
-        console.log("minesPlaced: ", minesPlaced, "numSquares: ", numSquares)
       }
       board.push(rowArr)
     }
-    console.log(board)
     return board
   }
 
@@ -48,6 +47,16 @@ class App extends Component {
     return 0
   }
 
+  updateParams = (event) => {
+    console.log(this.state, event)
+    this.setState({
+      rows: event.newRows,
+      columns: event.newColumns,
+      minesNum: event.newMines
+    })
+  }
+
+
   render() {
     return (
       <div className="App">
@@ -57,6 +66,13 @@ class App extends Component {
         columns = {this.state.columns}
         minesNum = {this.state.minesNum}
         generateBoard = {this.generateBoard}/>
+        <Parameters
+        rows = {this.state.rows}
+        columns = {this.state.columns}
+        minesNum = {this.state.minesNum}
+        updateParams = {this.updateParams}
+        />
+
       </div>
     );
   }
