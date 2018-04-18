@@ -18,12 +18,15 @@ class Grid extends React.Component {
 
         if (board[y][x].mineExists) {
           rowArr.push(
-            <Mine
+            <Box
               key = {boxId}
               id = {boxId}
               mineExists = {true}
+              className = "mine"
               xcoord = {x}
-              ycoord = {y}/>
+              ycoord = {y}
+              neighborNum = {0}
+            findNeighbors = {this.findNeighbors}/>
           )
         } else {
           rowArr.push(
@@ -31,9 +34,11 @@ class Grid extends React.Component {
               key = {boxId}
               id = {boxId}
               mineExists = {false}
+              className = "box"
               xcoord = {x}
               ycoord = {y}
-              findNeighbors = {this.findNeighbors}/>
+              neighborNum = {0}
+            findNeighbors = {this.findNeighbors}/>
           )
         }
       }
@@ -42,29 +47,30 @@ class Grid extends React.Component {
   }
 
   findNeighbors = (id, xcoord, ycoord) => {
-    console.log(id, xcoord, ycoord)
     const POSSIBLE_NEIGHBORS = [
       [-1,-1],[-1, 0],[-1, 1],
       [ 0,-1],       [ 0, 1],
       [ 1,-1],[ 1, 0],[ 1, 1]
     ];
+    let neighborIds = []
     let neighbors = []
+
     POSSIBLE_NEIGHBORS.forEach((offset) => {
       let x = xcoord + offset[0]
       let y = ycoord + offset[1]
       if (x >= 0 && x < this.props.rows && y >= 0 && y < this.props.columns) {
         let boxId = x + "_" + y
-        neighbors.push(boxId)
+        neighborIds.push(boxId)
       }
     })
 
+    this.currentBoard.forEach((square) => {
+      if (neighborIds.includes(square.props.id)){
+        neighbors.push(square)
+      }
+    })
     console.log(neighbors)
-
-    // this.currentBoard.filter((square) => {
-    //   if (square.id ===) {
-    //
-    //   }
-    // })
+    return neighbors
   }
 
 
