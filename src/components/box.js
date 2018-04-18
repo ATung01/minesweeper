@@ -1,8 +1,12 @@
 import React from 'react'
 
 class Box extends React.Component {
-  handleClick = (event) => {
-    console.log(this.props)
+  handleClick = () => {
+    // console.log(this.props)
+    this.props.findNeighbors(
+    this.props.id,
+    this.props.xcoord,
+    this.props.ycoord)
   }
 
   render() {
@@ -12,6 +16,9 @@ class Box extends React.Component {
         xcoord = {this.props.xcoord}
         ycoord = {this.props.ycoord}
         onClick  = {this.handleClick}>
+        <div className = "number">
+          
+        </div>
       </div>
     )
   }

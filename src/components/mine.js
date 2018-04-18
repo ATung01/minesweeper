@@ -12,6 +12,9 @@ class Mine extends React.Component {
         xcoord = {this.props.xcoord}
         ycoord = {this.props.ycoord}
         onClick  = {this.handleClick}>
+        <div className = "number">
+          
+        </div>
       </div>
     )
   }
